@@ -1,16 +1,25 @@
-const http = require("http");
+const { json } = require('body-parser');
+const express = require('express');
+const app = express();
+// PORT 
+const port = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-    if(req.url === '/'){
-        res.write('Hello World'); 
-        res.end();
-    }
-    if(req.url === '/api/courses'){
-        res.write(JSON.stringify([1,2,3,4]));
-        res.end();
-    }
+app.get('/', (req, res)=>{
+    res.send('Hello World')
 });
 
-server.listen(3000);
+app.get('/api/posts', (req, res)=>{
+    res.send([1,2,3,4])
+});
 
-console.log("Listening on port 3000 .....");
+
+app.get('/api/posts/:id', (req, res)=>{
+    res.send(req.params.id)
+});
+
+app.get('/api/posts/:year/:month', (req, res)=>{
+    res.send(req.params)
+});
+
+
+app.listen(port, console.log(`Listening on port ${port}....`));

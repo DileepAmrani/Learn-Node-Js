@@ -1,25 +1,18 @@
-const { json } = require('body-parser');
-const express = require('express');
-const app = express();
-// PORT 
-const port = process.env.PORT || 3000;
+const readline = require("readline");
 
-app.get('/', (req, res)=>{
-    res.send('Hello World')
-});
+// READ INPUT And WRITE OUTPUT
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
 
-app.get('/api/posts', (req, res)=>{
-    res.send([1,2,3,4])
-});
+rl.question("Please Enter your Name: ", (name)=>{
+    console.log("Your name is: ", name);
+    rl.close();
+})
 
+rl.on("close", ()=> {
+    console.log("Interface closed.");
+    process.exit(0)
+})
 
-app.get('/api/posts/:id', (req, res)=>{
-    res.send(req.params.id)
-});
-
-app.get('/api/posts/:year/:month', (req, res)=>{
-    res.send(req.params)
-});
-
-
-app.listen(port, console.log(`Listening on port ${port}....`));

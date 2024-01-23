@@ -1,0 +1,2 @@
+Data read from input.txt: lorem ispum text file 
+ Data created Tue Jan 23 2024 22:56:30 GMT+0500 (GMT+05:00)
